@@ -1,0 +1,60 @@
+Retrieve all Users - GET /users
+
+Create a User - POST /users
+
+Retrieve one User - GET /users/{id} -> /users/1
+
+Delete a User - DELETE /users/{id} -> /users/1
+
+Retrieve all posts for a User - GET /users/{id}/posts
+
+Create a posts for a User - POST /users/{id}/posts
+
+Retrieve details of a post - GET /users/{id}/posts/{post_id}
+
+Designing URLS
+PLURALS
+~~~~~~~
+/users
+/users/1
+/users/1/posts
+/users/1/posts/2
+
+
+WITHOUT PLURALS
+~~~~~~~~~~~~~~~
+/user
+/user/1
+/user/1/post
+/user/1/post/2
+
+
+docker run --detach
+--env MYSQL_ROOT_PASSWORD=dummypassword 
+--env MYSQL_USER=social-media-user 
+--env MYSQL_PASSWORD=dummypassword 
+--env MYSQL_DATABASE=social-media-database 
+--name mysql 
+--publish 3306:3306 
+mysql:8-oracle
+
+docker container ls
+mysqlsh
+\connect social-media-user@localhost:3306
+v
+\use social-media-database
+\sql
+select * from user_details;
+select * from post;
+
+Spring Security
+
+Filter Chains
+
+1) All requests should be authenticate 
+2) If a request is not authenticated, a web page is shown
+3) CSRF -> POST, PUT
+
+Configuration
+
+Bean FilterChain
