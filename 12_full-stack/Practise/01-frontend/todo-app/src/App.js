@@ -4,10 +4,10 @@ import {Component} from 'react';
 function App() {
   return (
     <div className="App">
-      <FirstComponent></FirstComponent>
-      <SecondComponent></SecondComponent>
-      <ThirdComponenet></ThirdComponenet>
-      <FourthComponenet></FourthComponenet>
+      <FirstComponent />
+      <SecondComponent />
+      <ThirdComponenet />
+      <FourthComponenet />
     </div>
   );
 }
@@ -35,7 +35,10 @@ class ThirdComponenet extends Component {
 class FourthComponenet extends Component {
   render() {
     return (
-      <div className="FourthComponenet">Fourth Component</div>
+      <>
+        <div className="FourthComponenet">Fourth Component</div>
+        <div className="FourthComponenet">Fourth Component</div>
+      </>
     )
   }
 }
