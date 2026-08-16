@@ -1,30 +1,15 @@
 import { PropTypes } from 'prop-types'
-import { useState } from 'react'
 
 export default function CounterButton( {by, incrementMethod, decrementMethod} ) {
-
-  // [0, ƒ]
-  // const [firstElt, secondElt] = array
-  const [count, setCount] = useState(0);
-
-  function incrementCounterFunction() {
-    setCount(count + by)
-    incrementMethod(by)
-  }
-
-  function decrementCounterFunction() {
-    setCount(count - by)
-    decrementMethod(by)
-  }
   
   return ( 
     <div className="Counter">
       <div>
         <button className="counterButton" 
-                onClick={incrementCounterFunction}      
+                onClick={() => incrementMethod(by)}      
         >+{by}</button>
         <button className="counterButton" 
-                onClick={decrementCounterFunction}      
+                onClick={() => decrementMethod(by)}      
         >-{by}</button>
       </div>
     </div>
