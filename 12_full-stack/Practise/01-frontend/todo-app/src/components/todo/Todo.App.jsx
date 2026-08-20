@@ -1,11 +1,17 @@
 import './TodoApp.css'
 import { useState } from 'react'
+import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom'
 
 export default function TodoApp() {
   return (
     <div className="TodoApp">
-      <LoginComponent />
-      {/* <WelcomeComponent /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={ <LoginComponent /> }></Route>
+          <Route path='/login' element={ <LoginComponent /> }></Route>
+          <Route path='/welcome' element={ <WelcomeComponent /> }></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }
@@ -20,6 +26,8 @@ function LoginComponent() {
 
   const[showErrorMessage, setErrorSuccessMessage] = useState(false)
 
+  const navigate = useNavigate();
+
   function handleUsernameChange(event) {
     setUsername(event.target.value)
   }
@@ -33,6 +41,7 @@ function LoginComponent() {
       console.log('Success')
       setShowSuccessMessage(true)
       setErrorSuccessMessage(false)
+      navigate('/welcome')
     } else {
       console.log('Failed')
       setShowSuccessMessage(false)
@@ -40,25 +49,11 @@ function LoginComponent() {
     }
   }
 
-  function SuccessMessageComponent() {
-    if(showSuccessMessage) {
-      return <div className="successMessage">Authenticated Successfully</div>
-    }
-    return null
-  }
-
-  function ErrorMessageComponent() {
-    if(showErrorMessage) {
-      return <div className="errorMessage">Authenticated Failed. Please check your credentials.</div>
-    }
-    return null
-  }
-
   return (
     <div className="Login">
-      
-      <SuccessMessageComponent />
-      <ErrorMessageComponent />
+      {showSuccessMessage && <div className="successMessage">Authenticated Successfully</div>} 
+      {showErrorMessage && <div className="errorMessage">Authenticated Failed. 
+                                                         Please check your credentials.</div>}
 
       <div className="LoginForm">
     
